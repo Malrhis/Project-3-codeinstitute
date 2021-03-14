@@ -13,6 +13,11 @@ DB_NAME = 'aquarist_resource'
 client = pymongo.MongoClient(MONGO_URI)
 db = client[DB_NAME]
 
+@app.route('/fish')
+def show_all_fish():
+    animals = db.animals.find()
+    return render_template('show_fish.template.html')
+
 # route to show the form
 @app.route('/fish/create')
 def show_create_fish():

@@ -1,0 +1,24 @@
+{% extends 'base.template.html' %}
+{%block title%}
+All Fishes contributed by our users
+{% endblock%}
+
+{%block content%}
+<h1>All Fishes contributed by our users</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Scientific Name</th>
+            <th>Higher Classification</th>
+            <th>Full Grown Size in cm</th>
+            <th>Diet</th>
+        </tr>
+    </thead>
+    {%for each_fish in fish %}
+
+    {% endfor%}
+
+</table>
+
+{% endblock %}
