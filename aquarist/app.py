@@ -13,9 +13,9 @@ DB_NAME = 'aquarist_resource_fish'
 client = pymongo.MongoClient(MONGO_URI)
 db = client[DB_NAME]
 
-@app.route('/animals/create')
-def show_create_animals():
-    return
+@app.route('/fish/create')
+def show_create_fish():
+    return render_template('create_fish.template.html')
 
 
 # "magic code" -- boilerplate
