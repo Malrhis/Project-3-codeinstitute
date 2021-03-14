@@ -1,1 +1,36 @@
-{% extends 'base.template.html'}
+{% extends 'base.template.html' %}
+{%block title%}
+Create Fish Form
+{% endblock%}
+
+{%block content%}
+<h1>Add New Fish Entry</h1>
+<form method="POST">
+    <div>
+        <label class="form-label">Name:</label>
+        <input type="text" name="name" class="form-control">
+    </div>
+    <div>
+        <label class="form-label">Scientific Name </label>
+        <input type="text" name="scientific-name" class="form-control">
+    </div>
+    <div>
+        <label class="form-label">Higher Classification: </label>
+        <input type="text" name="higher-classification" class="form-control">
+    </div>
+    <div>
+        <label class="form-label">Full grown size in cm: </label>
+        <input type="text" name="full-grown-size-in-cm" class="form-control">
+    </div>
+    <div>
+        <label class="form-label">Diet: </label>
+        <select name="diet">
+            <option>Carnivore</option>
+            <option>Omnivore</option>
+            <option>Herbivore</option>
+        </select>
+    </div>
+    <input type="submit" value="Create" class="btn btn-primary my-3">
+</form>
+
+{% endblock %}
