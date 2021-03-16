@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import os
 import pymongo
 from dotenv import load_dotenv
-from bson.objectId import ObjectId
+from bson.objectid import ObjectId
 
 load_dotenv()
 
@@ -46,8 +46,7 @@ def process_create_fish():
         "full_grown_size_in_cm":full_grown_size_in_cm,
         "diet":diet
     })
-
-    return "New Fish Saved"
+    return redirect(url_for('show_all_fish'))
 
 # DELETE
 # route to show the form for deletion
@@ -59,7 +58,14 @@ def delete_fish(fish_id):
     })
 
     return render_template('confirm_delete_fish.template.html',
-                        fish_to_delete = fish)
+                            fish_to_delete = fish)
+
+@app.route('/fish/<fish_id>/delete', methods=['POST'])
+def process_delete_fish(fish_id):
+    db.fish.delete_one({
+        "_id": ObjectId(fish_id)
+    })
+    return redirect(url_for('show_all_fish'))
 
 # "magic code" -- boilerplate
 if __name__ == '__main__':

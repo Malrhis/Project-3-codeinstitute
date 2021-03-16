@@ -1,0 +1,17 @@
+{% extends 'base.template.html' %}
+{%block title%}
+Delete Fish
+{% endblock%}
+
+{%block content%}
+<h1>Delete {{fish_to_delete.name}}</h1>
+<form method="POST">
+    <div class="alert alert-danger">
+        Are you sure you want to delete {{fish_to_delete.name}}?
+    </div>
+    <div>
+        <input type="submit" value="Delete" class="btn btn-danger">
+        <a href="{{url_for('show_all_fish')}}" class="btn btn-success">No don't Delete</a>
+    </div>
+</form>
+{% endblock %}
