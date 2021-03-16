@@ -5,7 +5,7 @@ All Fishes contributed by our users
 
 {%block content%}
 <h1>All Fishes contributed by our users</h1>
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>Name</th>
@@ -16,7 +16,13 @@ All Fishes contributed by our users
         </tr>
     </thead>
     {%for each_fish in fish %}
-
+        <tr>
+            <td>{{each_fish.name}}</td>
+            <td>{{each_fish.scientific_name}}</td>
+            <td>{{each_fish.higher_classification}}</td>
+            <td>{{each_fish.full_grown_size_in_cm}}</td>
+            <td>{{each_fish.diet}}</td>
+        </tr>
     {% endfor%}
 
 </table>

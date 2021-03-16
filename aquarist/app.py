@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import os
 import pymongo
 from dotenv import load_dotenv
+from bson.objectId import ObjectId
 
 load_dotenv()
 
@@ -13,11 +14,14 @@ DB_NAME = 'aquarist_resource'
 client = pymongo.MongoClient(MONGO_URI)
 db = client[DB_NAME]
 
+# READ
+# route to show all the fishes
 @app.route('/fish')
 def show_all_fish():
-    animals = db.animals.find()
-    return render_template('show_fish.template.html')
+    fish = db.fish.find()
+    return render_template('show_fish.template.html', fish=fish)
 
+# CREATE
 # route to show the form
 @app.route('/fish/create')
 def show_create_fish():
@@ -44,6 +48,18 @@ def process_create_fish():
     })
 
     return "New Fish Saved"
+
+# DELETE
+# route to show the form for deletion
+@app.route('/fish/<fish_id>/delete')
+def delete_fish(fish_id):
+    # find the fish that we want to delete
+    fish = db.fish.find_one({
+        '_id':ObjectId(fish_id)
+    })
+
+    return render_template('confirm_delete_fish.template.html',
+                        fish_to_delete = fish)
 
 # "magic code" -- boilerplate
 if __name__ == '__main__':
